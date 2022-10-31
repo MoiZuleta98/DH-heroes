@@ -1,16 +1,14 @@
 const express = require('express');
-
-//console.log(express);
-
 const path = require('path')
 
 let app = express();
 
-//console.log(app);
-
-app.listen(3030, () => console.log('Esto fue exitoso'));
-
 app.use(express.static('public'));
+
+app.set('puerto',process.env.PORT || 3030)
+
+app.listen(app.get('puerto'), ()=> console.log(`Servidor escuchando en puerto ${app.get('puerto')}`));
+
 
 app.get('/', function(req, res){  
     let htmlPath = path.resolve(__dirname,'./views/index.html');
